@@ -8,7 +8,7 @@ export const API = axios.create({
 //   baseURL:'https://mboum-finance.p.rapidapi.com',
 //   headers: {
 //     'x-rapidapi-host': 'mboum-finance.p.rapidapi.com',
-//     'x-rapidapi-key': '48487ac56amshbd82669f3cc2ec0p16637ejsnbbcc96467bde'
+//     'x-rapidapi-key': ''
 //   }    
 // })
 

@@ -11,7 +11,7 @@ function App() {
     email: ''
   }
   const [contactList, setContactList] = useState([]);   // View function
-  const [formItem, setformItem] = useState(blankForm);  // Add + Edit function
+  const [formItem, setFormItem] = useState(blankForm);  // Add + Edit function
   const [isEditMode, setIsEditMode] = useState(false);  // Edit function
 
   const apiGetContacts = async () => {
@@ -33,21 +33,6 @@ function App() {
     }
   }
 */
-/*
-  // Add new contact (Add async/wait for API)
-  const addItem = async (item) => {
-    const newItem = {...item, id: uniqueId('id')};
-    const newList = [newItem, ...contactList];
-    setContactList(newList);
-    // console.log('addItem:', newItem, newList);
-    try {
-      const response = await API.post('/contacts', newItem)
-      console.log('API.post response:', response);
-    } catch (err) {
-      console.log('API.post error:', err.message);
-    }
-  }
-*/
   // Delete contact (Add async/wait for API)
   const deleteItem = async (id) => { 
     const newList = contactList.filter( item => item.id !== id );
@@ -63,14 +48,13 @@ function App() {
   // Edit contact form setup (1)
   const editItem = item => {
     console.log('editItem:', item);
-    setformItem({
+    setFormItem({
       id: item.id,
       name: item.name,
       email: item.email
     })
     setIsEditMode(true);
   }
-  // Update item in the contactList after editing (2)
   // Handler for submit button
   const handleSubmit = async () => {
     console.log('handlerSubmit:');
@@ -98,28 +82,18 @@ function App() {
         console.log('API.post error:', err.message);
       }
     }
-    setformItem(blankForm);
+    setFormItem(blankForm);
   }
   // Handler for input field boxes
   const handleInput = e => {
     const { name, value } = e.target;
     const newItem = {...formItem, [name]: value}
-    setformItem(newItem)
+    setFormItem(newItem)
   }
-  // Handler for submit button
-/*  const handleSubmit = e => {
-    console.log('handleSubmit');
-    if (!isEditMode) {
-      
-    }
-    else
-      updateItem();
-  }
-*/  
   // Handler for cancel button
   const handleCancel = e => {
     console.log('handleCancel');
-    setformItem(blankForm);
+    setFormItem(blankForm);
     setIsEditMode(false);  
   }
 

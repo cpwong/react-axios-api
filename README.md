@@ -51,8 +51,8 @@ npx json-server --port 3300 --watch data.json
 
 ### Add
 > `App.js`
-- Create `addItem` function
-> `AddContact.js`
+- Create hooks `[formItem, setFormItem] = useState`
+- Create `handleSubmit` function for adding new contacts
 - Create JSX to generate input form with button
 - Create `newItem` state variable
 - Add `onChange={handleInput}` for each input field
@@ -62,12 +62,16 @@ npx json-server --port 3300 --watch data.json
 > `App.js`
 - Create `deleteItem` function
 > `ViewContactList.js`
-- Add Delete button and `deleteItem` as `onClick` handler
+- Create Delete button and `deleteItem` as `onClick` handler
 
 ### Edit
 > `App.js`
-- Editing has 2 parts
+- Create hooks `[isEditMode, setIsEditMode] = useState`
+- Edit function has 2 parts
   - Edit contact form (`editItem`)
   - Update edited item in contactList (`updateItem`)
+- Use isEditMode to switch between Add and Edit modes
+- Modify `handleSubmit` function to add Edit mode functions
+- Create Cancel button to clear form 
 > `ViewContactList.js`
-- Add Edit button and `props.editItem` as `onClick` handler
+- Create Edit button and `props.editItem` as `onClick` handler
