@@ -14,36 +14,17 @@ function App() {
   const [formItem, setFormItem] = useState(blankForm);  // Add + Edit function
   const [isEditMode, setIsEditMode] = useState(false);  // Edit function
 
+  // Fetch contact data from API
   const apiGetContacts = async () => {
+    
+  }
 
-    // const res = await API.get('contacts');
-    // console.log('apiGetContacts, response:', res);
-    const { status, data } = await API.get('/contacts');
-    // console.log('apiGetContacts, data:', data);
-    if (status === 200) {
-      setContactList(data);
-    }
-  }
-/*
-  const apiGetStockPrices = async () => {
-    const { status, data } = await API2.get('/qu/quote?symbol=MSFT')
-    // const { status, data } = await API.get('/hi/history?symbol=MSFT&interval=1d');
-    if (status === 200) {
-      console.log(data);
-    }
-  }
-*/
-  // Delete contact (Add async/wait for API)
+  // Delete contact 
   const deleteItem = async (id) => { 
     const newList = contactList.filter( item => item.id !== id );
     setContactList(newList);
-    setIsEditMode(false); // For Edit function
-    try {
-      const response = await API.delete(`/contacts/${id}`);
-      console.log('API.delete response:', response);
-    } catch (err) {
-      console.log('API.delete error:', err.message);
-    }
+    setIsEditMode(false);   // For Edit function
+    // Add async/wait for API.delete
   }
   // Edit contact form setup (1)
   const editItem = item => {
@@ -58,29 +39,20 @@ function App() {
   // Handler for submit button
   const handleSubmit = async () => {
     console.log('handlerSubmit:');
-    // Update edited item (PUT)
+    
     if (isEditMode) {
       const newList = contactList.map( item => item.id === formItem.id ? formItem : item );
       setContactList(newList);
       setIsEditMode(false);
-      try {
-        const response = await API.put(`/contacts/${formItem.id}`, formItem);
-        console.log('API.put response:', response);
-      } catch (err) {
-        console.log('API.put error:', err.message);
-      }  
+      // Add async/await for API.put
+
+
     } else {
-    // Add new item (POST)
       const newItem = {...formItem, id: uniqueId('id')};
       const newList = [newItem, ...contactList];
       setContactList(newList);
-      // console.log('addItem:', newItem, newList);
-      try {
-        const response = await API.post('/contacts', newItem)
-        console.log('API.post response:', response);
-      } catch (err) {
-        console.log('API.post error:', err.message);
-      }
+      // Add async/await for API.post
+           
     }
     setFormItem(blankForm);
   }
@@ -99,8 +71,7 @@ function App() {
 
   // Load contact list when component is mounted
   useEffect( () => {
-    apiGetContacts();
-    // apiGetStockPrices();
+    console.log('App.useEffect')
   }, [])
   
   return (
