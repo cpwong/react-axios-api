@@ -1,7 +1,7 @@
 import './App.css';
 import { uniqueId } from 'lodash';
 import { useState, useEffect } from 'react'
-import { API, API2 } from './api/API.js'
+import { API } from './api/API.js'
 import ViewContactList from './components/ViewContactList.js'
 
 function App() {
@@ -26,8 +26,8 @@ function App() {
   }
 /*
   const apiGetStockPrices = async () => {
-    const { status, data } = await API2.get('/qu/quote?symbol=MSFT')
-    // const { status, data } = await API.get('/hi/history?symbol=MSFT&interval=1d');
+    // const { status, data } = await API.get('/qu/quote?symbol=MSFT')
+    const { status, data } = await API.get('/hi/history?symbol=MSFT&interval=1d');
     if (status === 200) {
       console.log(data);
     }
